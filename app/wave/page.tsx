@@ -137,7 +137,7 @@ function AnimationCanvas() {
   );
 }
 
-export default function Home() {
+export default function WavePage() {
   return (
     <div className="bg-black h-screen w-full">
       <Suspense fallback={<div>Loading</div>}>
