@@ -1,30 +1,17 @@
 'use client';
 
-import Link from 'next/link';
 import { useState } from 'react';
+import Image from 'next/image';
+import { Link as SmoothLink } from 'react-scroll';
+
 import logo from '../../public/images/logo.svg';
 import menu from '../../public/images/menu.svg';
-import Image from 'next/image';
-
-export const navLinks = [
-  {
-    id: 'about',
-    title: 'About',
-  },
-  {
-    id: 'work',
-    title: 'Work',
-  },
-  {
-    id: 'contact',
-    title: 'Contact',
-  },
-];
+import { useLayoutStore } from '../store/LayoutStore';
 
 export const Navbar = () => {
   // State
-  const [active, setActive] = useState('');
   const [toggle, setToggle] = useState(false);
+  const { links: routes } = useLayoutStore();
 
   return (
     <nav
@@ -32,33 +19,29 @@ export const Navbar = () => {
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo */}
-        <Link
-          href={'/'}
+        <SmoothLink
+          to={'hero'}
+          smooth={true}
+          duration={800}
           className="flex items-center gap-2"
-          onClick={() => {
-            setActive('');
-            window.scrollTo(0, 0);
-          }}
         >
           <Image src={logo} alt="logo" className="w-9 h-9 object-contain" />
           <p className="text-white text-[18px] font-bold cursor-pointer flex">
             Enrique &nbsp;
             <span className="sm:block hidden">|&nbsp;Developer</span>
           </p>
-        </Link>
+        </SmoothLink>
 
         {/* Desktop Nav */}
         <ul className="list-none hidden sm:flex flex-row gap-10">
-          {navLinks.map((link) => (
-            <li
-              onClick={() => setActive(link.title)}
-              key={link.id}
-              className={`${
-                active === link.title ? 'text-white' : 'text-secondary'
-              } hover:text-white font-medium cursor-pointer text-[18px]`}
-            >
-              <a href={`#${link.id}`}>{link.title}</a>
-            </li>
+          {routes.map((link) => (
+            <SmoothLink key={link.id} to={link.id} smooth={true} duration={800}>
+              <li
+                className={`${'text-secondary'} hover:text-white font-medium cursor-pointer text-[18px]`}
+              >
+                <span>{link.title}</span>
+              </li>
+            </SmoothLink>
           ))}
         </ul>
 
@@ -78,19 +61,22 @@ export const Navbar = () => {
             } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
-              {navLinks.map((link) => (
-                <li
+              {routes.map((link) => (
+                <SmoothLink
+                  to={link.id}
+                  smooth={true}
+                  duration={800}
                   onClick={() => {
-                    setActive(link.title);
                     setToggle((prev) => !prev);
                   }}
                   key={link.id}
-                  className={`${
-                    active === link.title ? 'text-white' : 'text-secondary'
-                  } font-poppins font-medium cursor-pointer text-[16px]`}
                 >
-                  <a href={`#${link.id}`}>{link.title}</a>
-                </li>
+                  <li
+                    className={`${'text-secondary'} font-poppins font-medium cursor-pointer text-[16px]`}
+                  >
+                    <span>{link.title}</span>
+                  </li>
+                </SmoothLink>
               ))}
             </ul>
           </div>

@@ -8,11 +8,10 @@ export async function getProjects() {
       tags: z.array(
         z.object({
           name: z.string(),
-          color: z.string(),
         })
       ),
       image: z.string(),
-      source_code_link: z.string(),
+      source_code_link: z.string().optional(),
       demo_link: z.string().optional(),
     })
   );

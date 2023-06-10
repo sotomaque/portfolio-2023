@@ -12,9 +12,8 @@ export type Project = {
   description: string;
   tags: {
     name: string;
-    color: string;
   }[];
   image: string;
-  source_code_link: string;
+  source_code_link?: string;
   demo_link?: string;
 };

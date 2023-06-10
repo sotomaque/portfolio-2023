@@ -24,7 +24,7 @@ export const Projects = () => {
   }, [data]);
 
   return (
-    <>
+    <div id="projects">
       <motion.div className="pt-16" variants={textVariant()}>
         <p
           className={`sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider`}
@@ -60,6 +60,6 @@ export const Projects = () => {
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };

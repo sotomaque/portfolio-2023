@@ -1,8 +1,9 @@
 'use client';
 
+import Link from 'next/link';
+import Image from 'next/image';
 // @ts-ignore
 import Tilt from 'react-tilt';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 import github from '../../../../public/images/github.png';
@@ -35,18 +36,20 @@ export const ProjectCard = ({
             className="w-full h-full object-cover rounded-2xl"
           />
 
-          <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
-            <div
-              onClick={() => window.open(source_code_link, '_blank')}
-              className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
-            >
-              <Image
-                src={github}
-                alt="source code"
-                className="w-1/2 h-1/2 object-contain"
-              />
+          {source_code_link && (
+            <div className="absolute inset-0 flex justify-end m-3 card-img_hover">
+              <Link
+                href={source_code_link}
+                className="black-gradient w-10 h-10 rounded-full flex justify-center items-center cursor-pointer"
+              >
+                <Image
+                  src={github}
+                  alt="source code"
+                  className="w-1/2 h-1/2 object-contain"
+                />
+              </Link>
             </div>
-          </div>
+          )}
         </div>
 
         <div className="mt-5">
@@ -57,21 +60,18 @@ export const ProjectCard = ({
         <div className="mt-5 flex justify-between items-center">
           <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
-              <p
-                key={`${name}-${tag.name}`}
-                className={`text-[14px] ${tag.color}`}
-              >
+              <p key={`${name}-${tag.name}`} className={`text-[14px]`}>
                 #{tag.name}
               </p>
             ))}
           </div>
           {demo_link && (
-            <button
-              onClick={() => window.open(demo_link, '_blank')}
+            <Link
+              href={demo_link}
               className="hover:bg-secondary hover:text-black rounded-[10px] py-2 px-4 text-white text-[14px] font-bold bg-tertiary"
             >
               Demo
-            </button>
+            </Link>
           )}
         </div>
       </Tilt>

@@ -1,12 +1,13 @@
 'use client';
 
+import { useMemo } from 'react';
 import { VerticalTimeline } from 'react-vertical-timeline-component';
 import { motion } from 'framer-motion';
 import 'react-vertical-timeline-component/style.min.css';
-import { textVariant } from '@/app/constants';
 import { useQuery } from '@tanstack/react-query';
+
+import { textVariant } from '@/app/constants';
 import { getWorkExperience } from '@/app/actions/getWorkExperience';
-import { useMemo } from 'react';
 import { ExperienceCard } from './ExperienceCard';
 
 export const Experience = () => {
@@ -26,7 +27,7 @@ export const Experience = () => {
   }, [data]);
 
   return (
-    <>
+    <div id="work">
       <motion.div className="pt-16" variants={textVariant()}>
         <p
           className={
@@ -52,6 +53,6 @@ export const Experience = () => {
           ))}
         </VerticalTimeline>
       </div>
-    </>
+    </div>
   );
 };
