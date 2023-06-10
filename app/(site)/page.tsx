@@ -2,11 +2,11 @@
 
 import { Container } from '../components/Container';
 import { WaveAnimation } from '../components/WaveAnimation';
-import { About } from './components/About';
-import { Experience } from './components/Experience';
+import { About } from './components/About/About';
+import { Experience } from './components/WorkExperience/Experience';
 import { Hero } from './components/Hero';
-import { Navbar } from './components/Navbar';
-import { Works } from './components/Works';
+import { Navbar } from '../components/Navbar';
+import { Projects } from './components/Projects/Projects';
 
 export default function PorfolioPage() {
   return (
@@ -19,7 +19,7 @@ export default function PorfolioPage() {
       <Container>
         <About />
         <Experience />
-        <Works />
+        <Projects />
       </Container>
 
       <div className="relative z-0">

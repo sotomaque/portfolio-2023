@@ -1,6 +1,6 @@
 'use client';
 
-import { Navbar } from '../(site)/components/Navbar';
+import { Navbar } from '../components/Navbar';
 
 export default function WaveLayout({
   children,
