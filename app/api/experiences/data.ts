@@ -1,6 +1,6 @@
 import nutrien from '../../../public/images/company/nutrien.png';
 import eco from '../../../public/images/company/eco.png';
-import shareGro from '../../../public/images/company/shareGro.png';
+import shareGro from '../../../public/images/company/sharegro.png';
 import type { Experience } from '@/app/types';
 
 export const experiences: Experience[] = [
