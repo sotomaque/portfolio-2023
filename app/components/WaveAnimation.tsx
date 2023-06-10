@@ -1,40 +1,12 @@
 'use client';
 
+'use client';
+
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import {
-  Canvas,
-  extend,
-  useFrame,
-  useLoader,
-  useThree,
-} from '@react-three/fiber';
+import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Suspense, useCallback, useMemo, useRef } from 'react';
 
-extend({ OrbitControls });
-
-function CameraControls() {
-  // lets us access the camera
-  const {
-    camera,
-    gl: { domElement },
-  } = useThree();
-  const controlsRef = useRef<OrbitControls>();
-
-  useFrame(() => controlsRef.current?.update());
-
-  return (
-    // @ts-ignore
-    <orbitControls
-      ref={controlsRef}
-      args={[camera, domElement]}
-      autoRotate
-      autoRotateSpeed={-0.2}
-    />
-  );
-}
-
-function Points() {
+const Points = () => {
   // Need to load image as a texture (using useLoader)
   const image = useLoader(THREE.TextureLoader, '/images/circle.png');
   const bufferRef = useRef<THREE.BufferAttribute>();
@@ -53,8 +25,8 @@ function Points() {
   // instead we will do a 1D array where
   // [x1, y1, z1, x2, y2, z2, ...]
 
-  const count = 100; // points across one axis
-  const sep = 2; // seperation between points
+  const count = 300; // points across one axis
+  const sep = 0.5; // seperation between points
 
   let positions = useMemo(() => {
     let positions = [];
@@ -82,7 +54,7 @@ function Points() {
   useFrame(() => {
     if (!bufferRef.current) return;
 
-    faceShift += 15;
+    faceShift += 10;
     const currentPositions = bufferRef.current.array as Float32Array;
 
     let index = 0;
@@ -117,32 +89,41 @@ function Points() {
         attach={'material'}
         map={image}
         color={0x00aaff}
-        size={0.5}
-        transparent={false}
-        alphaTest={0.5}
+        size={0.2}
+        transparent={true}
         opacity={1}
       />
     </points>
   );
-}
+};
 
-function AnimationCanvas() {
+const Scene = () => {
   return (
-    <Canvas camera={{ position: [100, 10, 0], fov: 75 }}>
-      <Suspense fallback={null}>
-        <Points />
-      </Suspense>
-      <CameraControls />
-    </Canvas>
+    <Suspense fallback={<></>}>
+      <Points />
+    </Suspense>
   );
-}
+};
 
-export default function Home() {
+const AnimationCanvas = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="relative w-full h-full overflow-hidden">
+      {children}
+      <div className="absolute inset-0">
+        <Canvas camera={{ position: [90, 12, 5], fov: 65 }}>
+          <Scene />
+        </Canvas>
+      </div>
+    </div>
+  );
+};
+
+export const WaveAnimation = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="bg-black h-screen w-full">
       <Suspense fallback={<div>Loading</div>}>
-        <AnimationCanvas />
+        <AnimationCanvas>{children}</AnimationCanvas>
       </Suspense>
     </div>
   );
-}
+};
