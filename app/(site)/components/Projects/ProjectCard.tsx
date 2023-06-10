@@ -2,29 +2,19 @@
 
 // @ts-ignore
 import Tilt from 'react-tilt';
-import Image, { type StaticImageData } from 'next/image';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 import github from '../../../../public/images/github.png';
 import { fadeIn } from '@/app/constants';
+import type { Project } from '@/app/types';
 
 export const ProjectCard = ({
   index,
-  name,
-  description,
-  tags,
-  image,
-  source_code_link,
+  project: { description, image, name, source_code_link, tags, demo_link },
 }: {
   index: number;
-  name: string;
-  description: string;
-  tags: {
-    name: string;
-    color: string;
-  }[];
-  image: StaticImageData;
-  source_code_link: string;
+  project: Project;
 }) => {
   return (
     <motion.div variants={fadeIn('up', 'spring', index * 0.5, 0.75)}>
@@ -39,6 +29,8 @@ export const ProjectCard = ({
         <div className="relative w-full h-[230px]">
           <Image
             src={image}
+            height={230}
+            width={360}
             alt="project_image"
             className="w-full h-full object-cover rounded-2xl"
           />
@@ -62,15 +54,25 @@ export const ProjectCard = ({
           <p className="mt-2 text-secondary text-[14px]">{description}</p>
         </div>
 
-        <div className="mt-4 flex flex-wrap gap-2">
-          {tags.map((tag) => (
-            <p
-              key={`${name}-${tag.name}`}
-              className={`text-[14px] ${tag.color}`}
+        <div className="mt-5 flex justify-between items-center">
+          <div className="mt-4 flex flex-wrap gap-2">
+            {tags.map((tag) => (
+              <p
+                key={`${name}-${tag.name}`}
+                className={`text-[14px] ${tag.color}`}
+              >
+                #{tag.name}
+              </p>
+            ))}
+          </div>
+          {demo_link && (
+            <button
+              onClick={() => window.open(demo_link, '_blank')}
+              className="hover:bg-secondary hover:text-black rounded-[10px] py-2 px-4 text-white text-[14px] font-bold bg-tertiary"
             >
-              #{tag.name}
-            </p>
-          ))}
+              Demo
+            </button>
+          )}
         </div>
       </Tilt>
     </motion.div>
