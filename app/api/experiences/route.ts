@@ -5,7 +5,7 @@ import eco from '../../../public/images/company/eco.png';
 import shareGro from '../../../public/images/company/sharegro.png';
 import type { Experience } from '@/app/types';
 
-export const experiences: Experience[] = [
+const experiences: Experience[] = [
   {
     title: 'Principal Software Engineer',
     company_name: 'Nutrien Digital',
@@ -62,7 +62,6 @@ export const experiences: Experience[] = [
     ],
   },
 ];
-
 
 export function GET() {
   return NextResponse.json({ experiences });

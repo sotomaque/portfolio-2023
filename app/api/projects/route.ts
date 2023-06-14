@@ -6,7 +6,7 @@ import hawaii from '../../../public/images/projects/hawaii.png';
 import infobot from '../../../public/images/projects/infobot.png';
 import type { Project } from '@/app/types';
 
-export const projects: Project[] = [
+const projects: Project[] = [
   {
     name: 'Wave Animation',
     description:
