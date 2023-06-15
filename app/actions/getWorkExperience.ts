@@ -13,7 +13,7 @@ export async function getWorkExperience() {
   );
 
   try {
-    const result = await fetch('http://localhost:3000/api/experiences');
+    const result = await fetch('/api/experiences');
     const { experiences } = await result.json();
     const validated = schema.parse(experiences);
     return validated;
