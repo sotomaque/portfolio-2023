@@ -51,7 +51,18 @@ export const Projects = () => {
         </motion.p>
       </div>
 
-      <div className="mt-20 flex flex-wrap justify-center items-center md:gap-7 space-y-4">
+      <div
+        className={`
+        mt-20 
+        grid
+        grid-cols-1
+        md:grid-cols-2
+        md:gap-4
+        lg:grid-cols-3
+        items-center 
+        space-y-4 
+        `}
+      >
         {projects.map((project, index) => (
           <ProjectCard
             key={`project-${index}`}

@@ -11,21 +11,18 @@ import { Projects } from './components/Projects/Projects';
 export default function PorfolioPage() {
   return (
     <div className="relative z-0">
-      <WaveAnimation>
-        <Navbar />
-        <Hero />
-      </WaveAnimation>
+      <Navbar />
+      <main>
+        <WaveAnimation>
+          <Hero />
+        </WaveAnimation>
 
-      <Container>
-        <About />
-        <Experience />
-        <Projects />
-      </Container>
-
-      <div className="relative z-0">
-        {/* <Contact /> */}
-        {/* <StarsCanvas /> */}
-      </div>
+        <Container>
+          <About />
+          <Experience />
+          <Projects />
+        </Container>
+      </main>
     </div>
   );
 }
