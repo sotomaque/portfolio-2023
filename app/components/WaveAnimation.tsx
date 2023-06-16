@@ -1,7 +1,5 @@
 'use client';
 
-'use client';
-
 import * as THREE from 'three';
 import { Canvas, useFrame, useLoader } from '@react-three/fiber';
 import { Suspense, useCallback, useMemo, useRef } from 'react';
@@ -18,7 +16,7 @@ const Points = () => {
     (x: number, z: number) => {
       return Math.sin(frequency * (x ** 2 + z ** 2 + faceShift)) * amplitude;
     },
-    [amplitude, faceShift, frequency]
+    [amplitude, faceShift, frequency],
   );
 
   // we cant use a 2D array for the positions
