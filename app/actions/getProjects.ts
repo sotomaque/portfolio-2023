@@ -17,7 +17,7 @@ export async function getProjects() {
   );
 
   try {
-    const result = await fetch('http://localhost:3000/api/projects');
+    const result = await fetch('/api/projects');
     const { projects } = await result.json();
     const validated = schema.parse(projects);
     return validated;

@@ -38,6 +38,7 @@
   "devDependencies": {
     "@types/react-scroll": "^1.8.7",
     "@types/react-vertical-timeline-component": "^3.3.3",
-    "@types/three": "^0.152.1"
+    "@types/three": "^0.152.1",
+    "prettier": "^2.8.8"
   }
 }

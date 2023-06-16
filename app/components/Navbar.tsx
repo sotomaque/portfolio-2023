@@ -2,35 +2,34 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { Link as SmoothLink } from 'react-scroll';
 
+import { LinkWrapper } from './WrappedLink';
 import logo from '../../public/images/logo.svg';
 import menu from '../../public/images/menu.svg';
 import { useLayoutStore } from '../store/LayoutStore';
+
 
 export const Navbar = () => {
   // State
   const [toggle, setToggle] = useState(false);
   const { links: routes } = useLayoutStore();
+  const pathname = usePathname();
 
   return (
     <nav
-      className={`sm:px-16 px-6 w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
+      className={`sm:px-16 px-6 pb-2 w-full flex items-center py-5 fixed top-0 z-20 bg-primary`}
     >
       <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
         {/* Logo */}
-        <SmoothLink
-          to={'hero'}
-          smooth={true}
-          duration={800}
-          className="flex items-center gap-2"
-        >
+        <LinkWrapper isHome={pathname === '/'}>
           <Image src={logo} alt="logo" className="w-9 h-9 object-contain" />
           <p className="text-white text-[18px] font-bold cursor-pointer flex">
             Enrique &nbsp;
             <span className="sm:block hidden">|&nbsp;Developer</span>
           </p>
-        </SmoothLink>
+        </LinkWrapper>
 
         {/* Desktop Nav */}
         <ul className="list-none hidden sm:flex flex-row gap-10">

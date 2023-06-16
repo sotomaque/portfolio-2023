@@ -12,7 +12,7 @@ export async function getAboutSection() {
   });
 
   try {
-    const result = await fetch('http://localhost:3000/api/about');
+    const result = await fetch('/api/about');
     const json = await result.json();
     const validated = schema.parse(json);
     return validated;
