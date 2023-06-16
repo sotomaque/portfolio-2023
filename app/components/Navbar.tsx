@@ -8,8 +8,8 @@ import { Link as SmoothLink } from 'react-scroll';
 import { LinkWrapper } from './WrappedLink';
 import logo from '../../public/images/logo.svg';
 import menu from '../../public/images/menu.svg';
+import close from '../../public/images/close.svg';
 import { useLayoutStore } from '../store/LayoutStore';
-
 
 export const Navbar = () => {
   // State
@@ -55,9 +55,22 @@ export const Navbar = () => {
             }}
           />
           <div
-            className={`${
-              toggle ? 'flex' : 'hidden'
-            } p-6 black-gradient absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl`}
+            className={`
+            ${toggle ? 'flex' : 'hidden'} 
+            px-4
+            py-6
+            absolute 
+            top-20 
+            right-0 
+            mx-4 
+            my-2 
+            min-w-[140px] 
+            z-10 
+            rounded-xl 
+            bg-black 
+            border-2
+            border-slate-800
+            `}
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
               {routes.map((link) => (
