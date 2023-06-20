@@ -12,7 +12,7 @@ export default function PorfolioPage() {
   return (
     <div className="relative z-0">
       <Navbar />
-      <main>
+      <main className="pb-8">
         <WaveAnimation>
           <Hero />
         </WaveAnimation>
