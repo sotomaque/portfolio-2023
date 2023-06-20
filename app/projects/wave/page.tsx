@@ -46,7 +46,7 @@ function Points() {
     (x: number, z: number) => {
       return Math.sin(frequency * (x ** 2 + z ** 2 + faceShift)) * amplitude;
     },
-    [amplitude, faceShift, frequency]
+    [amplitude, faceShift, frequency],
   );
 
   // we cant use a 2D array for the positions

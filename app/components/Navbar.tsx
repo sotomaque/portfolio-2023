@@ -1,21 +1,72 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Link as SmoothLink } from 'react-scroll';
+import clsx from 'clsx';
 
 import { LinkWrapper } from './WrappedLink';
 import logo from '../../public/images/logo.svg';
 import menu from '../../public/images/menu.svg';
 import close from '../../public/images/close.svg';
-import { useLayoutStore } from '../store/LayoutStore';
+import { type NavItem, useLayoutStore } from '../store/LayoutStore';
 
 export const Navbar = () => {
   // State
   const [toggle, setToggle] = useState(false);
   const { links: routes } = useLayoutStore();
   const pathname = usePathname();
+  const [selectedNavItem, setSelectedNavItem] = useState<NavItem>('hero');
+
+  const isElementVisible = useCallback((id: string): boolean => {
+    const element = document.getElementById(id);
+    if (element) {
+      const { top, bottom } = element.getBoundingClientRect();
+      const windowHeight =
+        window.innerHeight || document.documentElement.clientHeight;
+
+      const isVisible = top < windowHeight && bottom >= 0;
+      console.log(`${id}: is visible? ${isVisible}`);
+      return isVisible;
+    }
+
+    return false;
+  }, []);
+
+  useEffect(() => {
+    if (pathname.includes('/posts')) {
+      setSelectedNavItem('posts');
+      return;
+    }
+
+    if (pathname.includes('/projects')) {
+      setSelectedNavItem('projects');
+      return;
+    }
+
+    const handleScroll = () => {
+      const visibleNavItems = routes.filter((link) =>
+        isElementVisible(link.id),
+      );
+      if (visibleNavItems && visibleNavItems.length > 0) {
+        // if we are on about & work experience, need a special case
+        // to keep account as selected nav item
+        if (visibleNavItems.find((item) => item.id === 'about')) {
+          setSelectedNavItem('about');
+          return;
+        }
+
+        setSelectedNavItem(visibleNavItems[visibleNavItems.length - 1].id);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [routes, isElementVisible, pathname]);
 
   return (
     <nav
@@ -34,13 +85,21 @@ export const Navbar = () => {
         {/* Desktop Nav */}
         <ul className="list-none hidden sm:flex flex-row gap-10">
           {routes.map((link) => (
-            <SmoothLink key={link.id} to={link.id} smooth={true} duration={800}>
+            <LinkWrapper
+              key={link.id}
+              to={link.id}
+              isHome={pathname === '/'}
+              href={link.href}
+            >
               <li
-                className={`${'text-secondary'} hover:text-white font-medium cursor-pointer text-[18px]`}
+                className={clsx(
+                  `${'text-secondary'} hover:text-white font-medium cursor-pointer text-[18px]`,
+                  selectedNavItem === link.id && 'text-white',
+                )}
               >
                 <span>{link.title}</span>
               </li>
-            </SmoothLink>
+            </LinkWrapper>
           ))}
         </ul>
 
