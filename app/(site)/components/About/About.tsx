@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 
 import { getAboutSection } from '@/app/actions/getAboutSection';
 import { fadeIn, styles, textVariant } from '@/app/constants';
-import { AboutCard } from './AboutCard';
 
 export const About = () => {
   const { data } = useQuery({
@@ -24,14 +23,6 @@ export const About = () => {
     return '';
   }, [data?.overview]);
 
-  const services = useMemo(() => {
-    if (data?.services) {
-      return data.services;
-    }
-
-    return [];
-  }, [data?.services]);
-
   return (
     <div className="pt-16" id="about">
       {/* Intro / Overview */}
@@ -47,13 +38,6 @@ export const About = () => {
       >
         {overview}
       </motion.p>
-
-      {/* Services */}
-      <div className="mt-20 flex flex-wrap justify-center items-center gap-10">
-        {services.map(({ title, icon }, index) => (
-          <AboutCard key={title} title={title} index={index} icon={icon} />
-        ))}
-      </div>
     </div>
   );
 };
