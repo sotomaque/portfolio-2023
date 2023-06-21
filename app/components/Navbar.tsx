@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { Link as SmoothLink } from 'react-scroll';
 import clsx from 'clsx';
 
 import { LinkWrapper } from './WrappedLink';
