@@ -34,6 +34,10 @@ export const Navbar = () => {
     return false;
   }, []);
 
+  const handleMobileItemClick = () => {
+    setToggle((prev) => !prev);
+  };
+
   useEffect(() => {
     if (pathname.includes('/posts')) {
       setSelectedNavItem('posts');
@@ -133,21 +137,22 @@ export const Navbar = () => {
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
               {routes.map((link) => (
-                <SmoothLink
-                  to={link.id}
-                  smooth={true}
-                  duration={800}
-                  onClick={() => {
-                    setToggle((prev) => !prev);
-                  }}
+                <LinkWrapper
                   key={link.id}
+                  to={link.id}
+                  isHome={pathname === '/'}
+                  href={link.href}
+                  onClick={handleMobileItemClick}
                 >
                   <li
-                    className={`${'text-secondary'} font-poppins font-medium cursor-pointer text-[16px]`}
+                    className={clsx(
+                      `text-secondary font-poppins font-medium cursor-pointer text-[16px]`,
+                      selectedNavItem === link.id && 'text-white',
+                    )}
                   >
                     <span>{link.title}</span>
                   </li>
-                </SmoothLink>
+                </LinkWrapper>
               ))}
             </ul>
           </div>
