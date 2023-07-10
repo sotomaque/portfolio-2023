@@ -21,7 +21,7 @@ const projects: Project[] = [
     ],
     image: wave.src,
     source_code_link: 'https://github.com/',
-    demo_link: '/wave',
+    demo_link: '/projects/wave',
   },
   {
     name: 'Hawaii Animation',
@@ -37,7 +37,7 @@ const projects: Project[] = [
     ],
     image: hawaii.src,
     source_code_link: 'https://github.com/',
-    demo_link: '/hawaii',
+    demo_link: '/projects/hawaii',
   },
   {
     name: 'Infobot.ai',

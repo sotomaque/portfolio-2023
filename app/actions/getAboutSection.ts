@@ -3,12 +3,6 @@ import { z } from 'zod';
 export async function getAboutSection() {
   const schema = z.object({
     overview: z.string(),
-    services: z.array(
-      z.object({
-        title: z.string(),
-        icon: z.string(),
-      })
-    ),
   });
 
   try {

@@ -1,9 +1,18 @@
 import create from 'zustand';
 
+export type NavItem =
+  | 'posts'
+  | 'hero'
+  | 'about'
+  | 'work'
+  | 'projects'
+  | 'posts';
+
 export type Route = {
   show?: boolean;
-  id: string;
+  id: NavItem;
   title: string;
+  href?: string;
 };
 
 // STATE TYPE
@@ -30,6 +39,11 @@ export const navLinks: Route[] = [
   {
     id: 'projects',
     title: 'Projects',
+  },
+  {
+    id: 'posts',
+    title: 'Posts',
+    href: '/posts',
   },
 ];
 
