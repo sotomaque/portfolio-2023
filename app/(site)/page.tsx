@@ -18,9 +18,9 @@ export default function PorfolioPage() {
         </WaveAnimation>
 
         <Container>
-          <About />
-          <Experience />
-          <Projects />
+          <About className="pb-12" />
+          <Experience className="pb-12" />
+          <Projects className="pb-12" />
         </Container>
       </main>
     </div>

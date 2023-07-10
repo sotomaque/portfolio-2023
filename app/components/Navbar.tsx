@@ -53,13 +53,6 @@ export const Navbar = () => {
         isElementVisible(link.id),
       );
       if (visibleNavItems && visibleNavItems.length > 0) {
-        // if we are on about & work experience, need a special case
-        // to keep account as selected nav item
-        if (visibleNavItems.find((item) => item.id === 'about')) {
-          setSelectedNavItem('about');
-          return;
-        }
-
         setSelectedNavItem(visibleNavItems[visibleNavItems.length - 1].id);
       }
     };

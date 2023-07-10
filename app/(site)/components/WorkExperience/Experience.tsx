@@ -10,14 +10,18 @@ import { textVariant } from '@/app/constants';
 import { getWorkExperience } from '@/app/actions/getWorkExperience';
 import { ExperienceCard } from './ExperienceCard';
 
-export const Experience = () => {
+type ExperienceProps = {
+  className?: string;
+};
+
+export const Experience = ({ className }: ExperienceProps) => {
+  // Hook(S)
   const { data } = useQuery({
     queryKey: ['experience'],
     queryFn: getWorkExperience,
     refetchOnMount: false,
     refetchOnWindowFocus: false,
   });
-
   const experiences = useMemo(() => {
     if (data && data.length > 0) {
       return data;
@@ -27,7 +31,7 @@ export const Experience = () => {
   }, [data]);
 
   return (
-    <div id="work">
+    <div id="work" className={className}>
       <motion.div className="pt-16" variants={textVariant()}>
         <p
           className={

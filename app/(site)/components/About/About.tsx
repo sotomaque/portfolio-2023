@@ -7,7 +7,11 @@ import { useQuery } from '@tanstack/react-query';
 import { getAboutSection } from '@/app/actions/getAboutSection';
 import { fadeIn, styles, textVariant } from '@/app/constants';
 
-export const About = () => {
+type AboutProps = {
+  className?: string;
+};
+
+export const About = ({ className }: AboutProps) => {
   const { data } = useQuery({
     queryKey: ['about'],
     queryFn: getAboutSection,
@@ -24,7 +28,7 @@ export const About = () => {
   }, [data?.overview]);
 
   return (
-    <div className="pt-16" id="about">
+    <div className={`pt-16 ${className}`} id="about">
       {/* Intro / Overview */}
       <motion.div variants={textVariant()}>
         <p className={styles.sectionSubText}>Introduction</p>

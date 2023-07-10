@@ -1,13 +1,19 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { fadeIn, textVariant } from '@/app/constants';
-import { ProjectCard } from './ProjectCard';
-import { useQuery } from '@tanstack/react-query';
-import { getProjects } from '@/app/actions/getProjects';
 import { useMemo } from 'react';
+import { motion } from 'framer-motion';
+import { useQuery } from '@tanstack/react-query';
 
-export const Projects = () => {
+import { fadeIn, textVariant } from '@/app/constants';
+import { getProjects } from '@/app/actions/getProjects';
+import { ProjectCard } from './ProjectCard';
+
+type ProjectsProps = {
+  className?: string;
+};
+
+export const Projects = ({ className }: ProjectsProps) => {
+  // Hook(s)
   const { data } = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
@@ -24,7 +30,7 @@ export const Projects = () => {
   }, [data]);
 
   return (
-    <div id="projects">
+    <div id="projects" className={className}>
       <motion.div className="pt-16" variants={textVariant()}>
         <p
           className={`sm:text-[18px] text-[14px] text-secondary uppercase tracking-wider`}
