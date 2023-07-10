@@ -4,6 +4,7 @@ import earnbetter from '../../../public/images/projects/earnbetter.png';
 import wave from '../../../public/images/projects/wave.png';
 import hawaii from '../../../public/images/projects/hawaii.png';
 import infobot from '../../../public/images/projects/infobot.png';
+import reddit from '../../../public/images/projects/reddit.png';
 import type { Project } from '@/app/types';
 
 const projects: Project[] = [
@@ -82,6 +83,26 @@ const projects: Project[] = [
     ],
     image: earnbetter.src,
     demo_link: 'https://earnbetter.com/',
+  },
+  {
+    name: 'Reddit Clone',
+    description: 'A reddit clone built with NextJS and Prisma.',
+    tags: [
+      {
+        name: 'nextjs',
+      },
+      {
+        name: 'prisma',
+      },
+      {
+        name: 'tailwindcss',
+      },
+      {
+        name: 'redis',
+      },
+    ],
+    image: reddit.src,
+    source_code_link: 'https://github.com/sotomaque/reddit-clone',
   },
 ];
 
