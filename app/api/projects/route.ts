@@ -100,9 +100,13 @@ const projects: Project[] = [
       {
         name: 'redis',
       },
+      {
+        name: 'uploadthingy',
+      },
     ],
     image: reddit.src,
     source_code_link: 'https://github.com/sotomaque/reddit-clone',
+    demo_link: 'https://reddit-clone-sotomaque.vercel.app/',
   },
 ];
 
